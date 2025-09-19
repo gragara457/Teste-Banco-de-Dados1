@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FMU Canids</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+    <header>
+        <h1>FMU CANIDS - Cadastre seu pet</h1>
+        <div class="admin-link">
+            <a href="admin.html">🔐 Área Administrativa</a>
+            <a href="documentacao.html">📚 Documentação</a>
+        </div>
+    </header>
+
+<main>
+    <section class="forms">
+        <h1>Cadastre seu pet</h1>
+        <p class="required-note"><span class="required">*</span> Campos obrigatórios</p>
+        
+        <!--
+            Esta é a primeira seção do formulário, dedicada a informações básicas do pet.
+            A classe "active" é o que a torna visível quando a página é carregada.
+            As outras seções estão escondidas por padrão no CSS.
+        -->
+        <div id="section1" class="form-section active">
+            <h2>Informações Básicas</h2>
+            
+            <div class="form-group">
+                <div class="label"><label for="situacao">Situação <span class="required">*</span></label></div>
+                <!-- O menu <select> oferece opções fixas (achado ou perdido), evitando erros de digitação. -->
+                <select id="situacao" name="situacao" required>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="achado">Achado</option>
+                    <option value="perdido">Perdido</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="especie">Espécie <span class="required">*</span></label></div>
+                <!-- Outro menu de seleção para padronizar as opções de espécie. -->
+                <select id="especie" name="especie" required>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="gato">Gato</option>
+                    <option value="cachorro">Cachorro</option>
+                    <option value="passaro">Pássaro</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="genero">Gênero <span class="required">*</span></label></div>
+                <!-- Menu de seleção para padronizar as opções de gênero. -->
+                <select id="genero" name="genero" required>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="macho">Macho</option>
+                    <option value="femea">Fêmea</option>
+                </select>
+            </div>
+            
+            <!-- Este botão chama a função JavaScript "nextSection(1)" para ir para a próxima seção. -->
+            <button onclick="nextSection(1)">Próximo</button>
+        </div>
+        
+        <!-- 
+            Esta é a segunda seção do formulário, dedicada às características físicas.
+            Ela só se tornará visível quando a classe "active" for adicionada pelo JavaScript.
+        -->
+        <div id="section2" class="form-section">
+            <h2>Características Físicas</h2>
+            
+            <div class="form-group">
+                <div class="label"><label for="raca">Raça</label></div>
+                <input type="text" name="raca" id="raca">
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="porte">Porte <span class="required">*</span></label></div>
+                <!-- Menu de seleção para padronizar as opções de porte. -->
+                <select id="porte" name="porte" required>
+                    <option value="" disabled selected>Selecione uma opção</option>
+                    <option value="pequeno">Pequeno</option>
+                    <option value="medio">Médio</option>
+                    <option value="grande">Grande</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="cor">Cor</label></div>
+                <input type="text" name="cor" id="cor">
+            </div>
+            
+            <!-- Botão para voltar à seção anterior. -->
+            <button onclick="prevSection(2)">Voltar</button>
+            <!-- Botão para avançar para a próxima seção. -->
+            <button onclick="nextSection(2)">Proximo</button>
+        </div>
+        
+        <!-- 
+            Esta é a terceira e última seção do formulário.
+            Contém informações de contato e detalhes adicionais.
+        -->
+        <div id="section3" class="form-section">
+            <h2>Informações de Contato e Detalhes</h2>
+            
+            <div class="form-group">
+                <div class="label"><label for="nome">Nome</label></div>
+                <input type="text" name="nome" id="nome">
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="descricao">Descrição</label></div>
+                <!-- A tag <textarea> permite um campo de texto de múltiplas linhas. -->
+                <textarea name="descricao" id="descricao" rows="4"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="endereco">Endereço</label></div>
+                <input type="text" name="endereco" id="endereco">
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="data">Data (sumiu/foi encontrado) <span class="required">*</span></label></div>
+                <!-- O tipo "date" cria um seletor de calendário nativo do navegador. -->
+                <input type="date" name="data" id="data" required>
+            </div>
+            
+            <div class="form-group">
+                <div class="label"><label for="telefone">Telefone <span class="required">*</span></label></div>
+                <!-- O tipo "tel" indica um campo de telefone. O evento oninput chama a função para formatar o número. -->
+                <input type="tel" name="telefone" id="telefone" oninput="formatPhoneNumber(this)" required placeholder="(00) 00000-0000">
+            </div>
+            
+            <!-- Botão para voltar à seção anterior. -->
+            <button onclick="prevSection(3)">Voltar</button>
+            <!-- Este botão finaliza o formulário chamando a função "submitForm". -->
+            <button onclick="submitForm()">Cadastrar Pet</button>
+        </div>
+    </section>
+</main>
+    <footer></footer>
+    <script src="Teste banco de dados.js"></script>
+
+</body>
+</html>

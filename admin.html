@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administração - FMU Canids</title>
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="admin-style.css">
+</head>
+<body>
+    <header>
+        <h1>FMU CANIDS - Administração</h1>
+    </header>
+
+    <main>
+        <!-- Tela de Login -->
+        <section id="login-section" class="admin-section active">
+            <div class="login-container">
+                <h2>Acesso Restrito</h2>
+                <p>Digite suas credenciais para acessar o banco de dados</p>
+                
+                <div class="form-group">
+                    <label for="username">Usuário:</label>
+                    <input type="text" id="username" placeholder="Digite o usuário">
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" placeholder="Digite a senha">
+                </div>
+                
+                <button onclick="fazerLogin()" class="login-btn">Entrar</button>
+                <a href="Teste banco de dados.html" class="back-link">← Voltar ao Cadastro</a>
+            </div>
+        </section>
+
+        <!-- Painel Administrativo -->
+        <section id="admin-panel" class="admin-section">
+            <div class="admin-header">
+                <h2>Painel Administrativo</h2>
+                <div class="admin-controls">
+                    <button onclick="carregarDados()" class="refresh-btn">🔄 Atualizar</button>
+                    <button onclick="exportarCSV()" class="export-btn">📊 Exportar Excel/CSV</button>
+                    <a href="documentacao.html" class="nav-btn" style="text-decoration: none; display: inline-block;">📚 Documentação</a>
+                    <button onclick="logout()" class="logout-btn">🚪 Sair</button>
+                </div>
+            </div>
+
+            <div class="stats-container">
+                <div class="stat-card">
+                    <h3>Total de Pets</h3>
+                    <span id="total-pets">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Perdidos</h3>
+                    <span id="pets-perdidos">0</span>
+                </div>
+                <div class="stat-card">
+                    <h3>Encontrados</h3>
+                    <span id="pets-encontrados">0</span>
+                </div>
+            </div>
+
+            <div class="filter-container">
+                <h3>Filtros:</h3>
+                <select id="filter-situacao" onchange="aplicarFiltros()">
+                    <option value="">Todas as situações</option>
+                    <option value="perdido">Perdidos</option>
+                    <option value="achado">Encontrados</option>
+                </select>
+                
+                <select id="filter-especie" onchange="aplicarFiltros()">
+                    <option value="">Todas as espécies</option>
+                    <option value="gato">Gato</option>
+                    <option value="cachorro">Cachorro</option>
+                    <option value="passaro">Pássaro</option>
+                </select>
+                
+                <input type="text" id="filter-nome" placeholder="Buscar por nome..." onkeyup="aplicarFiltros()">
+            </div>
+
+            <div class="table-container">
+                <table id="pets-table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Situação</th>
+                            <th>Nome</th>
+                            <th>Espécie</th>
+                            <th>Gênero</th>
+                            <th>Porte</th>
+                            <th>Data</th>
+                            <th>Telefone</th>
+                            <th>Cadastrado em</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody id="pets-tbody">
+                        <!-- Dados serão inseridos aqui pelo JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <div id="no-data" class="no-data" style="display: none;">
+                <p>Nenhum pet cadastrado ainda.</p>
+                <a href="Teste banco de dados.html">Cadastrar primeiro pet</a>
+            </div>
+        </section>
+    </main>
+
+    <script src="admin.js"></script>
+</body>
+</html>
